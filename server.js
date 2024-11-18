@@ -4,9 +4,13 @@ const { Server } = require("socket.io");
 
 const app = express();
 const server = http.createServer(app);
+
+// Active la gestion des proxys (indispensable pour Railway ou tout autre proxy inversé)
+app.set("trust proxy", 1);
+
 const io = new Server(server, {
     cors: {
-        origin: "*", // Permet toutes les origines
+        origin: "*",
         methods: ["GET", "POST"],
     },
 });
